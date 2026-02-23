@@ -236,8 +236,8 @@
     }
 
     async function updateImages() {
-        const src1 = `${folder}/${page}.png`;
-        const src2 = `${folder}/${page + 1}.png`;
+        const src1 = `${folder}/${page}.webp`;
+        const src2 = `${folder}/${page + 1}.webp`;
 
         const exists1 = await imageExists(src1);
         const exists2 = await imageExists(src2);
@@ -276,7 +276,7 @@
 
         if (newPage < 1) return;
 
-        const srcCheck = `${folder}/${newPage}.png`;
+        const srcCheck = `${folder}/${newPage}.webp`;
         const exists = await imageExists(srcCheck);
 
         if (!exists) {
