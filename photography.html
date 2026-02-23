@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography</title>
+
+        <meta property="og:image" content="lana/1.webp">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+
+            background-color: black;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            flex-direction: column;
+
+            width: 100vw;
+            height: auto;
+        }
+
+        #fold {
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100dvh;
+            position: fixed;
+
+            z-index: 2;
+        }
+
+        .full {
+            width: 100vw;
+            display: flex;
+        }
+
+        .full img {
+            width: 50%;
+        }
+
+        .normal {
+
+            width: 50vw;
+        }
+
+        img {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: 1s ease-in-out;
+
+        }
+
+        img.loaded {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+
+<body>
+    <img id="fold" src="bg/bookfold.png" alt="">
+
+
+
+    <img class="full" src="anika/1.webp" alt="">
+
+    <div class="full">
+        <img src="anika/2.webp" alt="">
+        <img src="anika/3.webp" alt="">
+    </div>
+
+    <img src="anika/4.webp" class="full" alt="">
+
+    <div class="full">
+        <img src="anika/5.webp" alt="">
+        <img src="anika/6.webp" alt="">
+    </div>
+
+    <img src="anika/7.webp" class="full" alt="">
+    <img src="anika/8.webp" class="full" alt="">
+
+
+    <div class="full">
+        <img src="anika/9.webp" alt="">
+        <img src="anika/10.webp" alt="">
+    </div>
+
+    <img src="anika/11.webp" class="full" alt="">
+    <img src="anika/12.webp" class="full" alt="">
+
+    <img src="anika/13.webp" class="full" alt="">
+
+    <div class="full">
+        <img src="anika/14.webp" alt="">
+        <img src="anika/15.webp" alt="">
+    </div>
+
+    <img src="anika/16.webp" class="full" alt="">
+    <img src="anika/17.webp" class="full" alt="">
+
+
+</body>
+
+<script>
+    // Get ?name= from URL
+    const params = new URLSearchParams(window.location.search);
+    const folderName = params.get("name");
+
+    if (folderName) {
+        // Select all images
+        const images = document.querySelectorAll("img");
+
+        images.forEach(img => {
+            if (img.src.includes("anika/")) {
+                img.src = img.src.replace("anika/", folderName + "/");
+            }
+        });
+    }
+
+
+</script>
+
+<script>
+    document.querySelectorAll("img").forEach(img => {
+        img.onload = () => {
+            img.classList.add("loaded");
+        };
+    });
+</script>
+
+
+
+</html>

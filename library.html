@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+
+    <meta property="og:image" content="bg/lotus.jpeg">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        @font-face {
+            font-family: "Champ";
+            src: url("fonts/champ.otf") format("opentype");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            height: 100dvh;
+            width: 100vw;
+
+            /* background-image: url(bg/blugg.png);
+            background-size: 100vw auto;
+            background-position: center; */
+
+        }
+
+
+
+        #openbook {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background-image: url(bg/baby.png);
+
+
+            overflow: hidden;
+
+            width: auto;
+            height: auto;
+
+
+        }
+
+        #fold {
+            width: 100%;
+            height: auto;
+
+
+            position: absolute;
+            z-index: 2;
+            pointer-events: none;
+
+        }
+
+        .page {
+            cursor: pointer;
+            width: 50vw;
+            height: 100dvh;
+            position: relative;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+
+
+            overflow: hidden;
+
+        }
+
+
+        .page img {
+            position: absolute;
+            width: 100%;
+            height: 100dvh;
+
+            object-fit: contain;
+            background-color: rgb(255, 255, 255);
+        }
+
+
+
+        #lr {
+            position: absolute;
+            display: flex;
+
+            bottom: 0;
+
+            cursor: pointer;
+        }
+
+
+        #lr img {
+            margin-bottom: 1.5vw;
+            margin: 1vw;
+            width: 8vw;
+
+            cursor: pointer;
+
+            transition: transform 0.15s ease;
+        }
+
+
+
+        .w.left.active {
+            animation: popLeft 0.35s ease-in-out;
+        }
+
+        .w.right.active {
+            animation: popRight 0.35s ease-in-out;
+        }
+
+
+        @keyframes popRight {
+            0% {
+                transform: scale(1);
+
+
+            }
+
+
+            50% {
+                transform: scale(1.1) rotate(30deg);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes popLeft {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1) rotate(-30deg);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+
+        @media (max-width: 600px) {
+            .page img {
+
+                width: 100%;
+                height: auto;
+            }
+
+            #fold {
+
+                /* border: 1px rgb(80, 80, 80) solid; */
+                box-shadow: 0 0 20px rgba(37, 37, 37, 0.8);
+            }
+
+
+            #lr img {
+                margin-bottom: 1.5vw;
+                margin: 2vw;
+                width: 25vw;
+
+                cursor: pointer;
+
+                transition: transform 0.15s ease;
+            }
+
+
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="openbook">
+        <img id="fold" src="bg/bookfold.png" alt="">
+
+        <div class="page">
+
+            <img class="one" src="" alt="">
+        </div>
+        <div class="page">
+            <img class="two" src="" alt="">
+
+        </div>
+    </div>
+    <div id="lr">
+        <img onclick="flip(this)" class="w left" src="icons/wl.png" alt="">
+        <img onclick="flip(this)" class="w right" src="icons/wr.png" alt="">
+
+    </div>
+
+
+
+
+
+</body>
+
+
+<script>
+    const folder = window.location.search.slice(1);
+    console.log(folder);
+
+    let page = 1;
+    const imgOne = document.querySelector('.one');
+    const imgTwo = document.querySelector('.two');
+
+    function imageExists(src) {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve(true);
+            img.onerror = () => resolve(false);
+            img.src = src;
+        });
+    }
+
+    async function updateImages() {
+        const src1 = `${folder}/${page}.png`;
+        const src2 = `${folder}/${page + 1}.png`;
+
+        const exists1 = await imageExists(src1);
+        const exists2 = await imageExists(src2);
+
+        if (!exists1 || !exists2) {
+            console.log("Image does not exist. Stopping.");
+            return false;
+        }
+
+        imgOne.src = src1;
+        imgTwo.src = src2;
+        return true;
+    }
+
+    // initial load
+    updateImages();
+
+    async function flip(el) {
+        el.classList.remove("active");
+        void el.offsetWidth;
+        el.classList.add("active");
+
+        setTimeout(() => {
+            el.classList.remove("active");
+        }, 350);
+
+        let newPage = page;
+
+        if (el.classList.contains('right')) {
+            newPage += 2;
+        }
+
+        if (el.classList.contains('left')) {
+            newPage -= 2;
+        }
+
+        if (newPage < 1) return;
+
+        const srcCheck = `${folder}/${newPage}.png`;
+        const exists = await imageExists(srcCheck);
+
+        if (!exists) {
+            console.log("Next image doesn't exist. Stopping.");
+            return;
+        }
+
+        page = newPage;
+        updateImages();
+    }
+</script>
+
+
+
+</html>

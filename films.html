@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Films</title>
+
+        <meta property="og:image" content="anika/1.webp">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    @font-face {
+        font-family: "Champ";
+        src: url("fonts/champ.otf") format("opentype");
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    body {
+        width: 100vw;
+
+
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-direction: column;
+
+        background: black;
+
+
+    }
+
+    p {
+        color: black;
+    }
+
+    .centaur {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    .champ {
+        font-family: "Champ";
+
+
+    }
+
+    .margins {
+        margin-top: 2vw;
+        margin-bottom: 2vw;
+    }
+
+    .head {
+        font-size: 10vw;
+        margin: 2vw;
+
+
+    }
+
+    .med {
+        font-size: 4vw;
+    }
+
+    .small {
+        font-size: 1.5vw;
+    }
+
+    .mov {
+        margin-bottom: 5vw;
+        width: 100vw;
+        height: auto;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        text-align: left;
+    }
+
+    #bg {
+        width: 100vw;
+        height: 100dvh;
+        object-fit: cover;
+        position: fixed;
+        z-index: -1;
+    }
+
+    .vimeo {
+        width: 40vw;
+        height: 50dvh;
+        display: block;
+    }
+
+    .des {
+        width: 40vw;
+    }
+
+    #home {
+        width: 50vw;
+    }
+
+    @media (max-width: 600px) {
+        .head {
+            font-size: 30vw;
+            margin: 10vw;
+        }
+
+        .champ {
+            font-family: "Champ";
+
+        }
+
+        .margins {
+            margin-top: 5vw;
+            margin-bottom: 5vw;
+        }
+
+        .med {
+            font-size: 15vw;
+        }
+
+        .small {
+            font-size: 5vw;
+        }
+
+        .mov {
+            margin-bottom: 25vw;
+        }
+
+        .vimeo {
+            width: 100vw;
+            height: 30dvh;
+            display: block;
+        }
+
+        .des {
+            width: 90vw;
+        }
+
+        #home {
+            width: 80vw;
+        }
+    }
+</style>
+
+<body>
+    <img id="bg" src="bg/grad.jpg" alt="">
+    <p class="champ head">Films</p>
+    <div class="mov">
+
+
+        <div class="mov">
+            <iframe class="vimeo" title="vimeo-player" src="https://player.vimeo.com/video/1161449196?h=8f746f66e1"
+                frameborder="0" referrerpolicy="strict-origin-when-cross-origin"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                allowfullscreen></iframe>
+
+            <div class="des">
+                <p class="champ margins med">Spirallineage 2025</p>
+                <p class="small">
+                    Written and Directed by Masha Krupnova
+                    <br><br>
+                    Cast:
+                    <br>
+                    Liliana’s Mother, Anna: Kalina Vasileva
+                    <br>
+                    Liliana’s daughter: Lilly Krupnova
+                    <br><br>
+                    Director of Photography:
+                    <br>
+                    Masha Krupnova and Fatou Diagne
+                    <br><br>
+                    Editor: Masha V. Krupnova
+                    <br><br>
+                    Sound designers: Isabel Hajjar/Ujima Nandin-Uchral Delgerbayar
+                    <br><br>
+                    Assistance: Nikolay Stoyanov Anton Bachkov
+                </p>
+
+            </div>
+
+        </div>
+
+        <iframe class="vimeo" title="vimeo-player" src="https://player.vimeo.com/video/1067546062?h=21fc18976f"
+            frameborder="0" referrerpolicy="strict-origin-when-cross-origin"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            allowfullscreen></iframe>
+
+        <div class="des">
+            <p class="champ margins med">Paperboy 2024</p>
+            <p class="small">
+                Written and Directed by Masha Krupnova
+                <br>
+                co-written with Sienna Kuchernan
+                <br><br>
+                Cast: Asher Gottrich
+                <br><br>
+                Director of photography: Seraphina Wald
+                <br><br>
+                Editor: Elsa Barbier
+                <br><br>
+                Sound Design: Kate Makhija
+
+
+
+            </p>
+        </div>
+    </div>
+    <div class="mov">
+        <iframe class="vimeo" title="vimeo-player" src="https://player.vimeo.com/video/900275193?h=5a18beefc4"
+            frameborder="0" referrerpolicy="strict-origin-when-cross-origin"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            allowfullscreen></iframe>
+        <div class="des">
+            <p class="champ margins med">Angel, Shattered 2023</p>
+            <p class="small">
+                Written and Directed by Masha Krupnova <br>
+                co-directed with: Ryan Gottrich
+                <br><br>
+                Cast:
+                <br>
+                Rose: Ece Karacan
+                <br>
+                The therapist: Breen O’Reilly
+                <br><br>
+                Director of Photography: Stasia Starikova
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <a href="index.html">
+        <img id="home" src="icons/ballet.png" alt="">
+
+    </a>
+
+
+</body>
+
+</html>

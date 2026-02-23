@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m444sha</title>
+
+    <meta property="og:title" content="m444sha" />
+    <meta name="description" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="bg/lotus.jpeg">
+    <meta property="og:url" content="https://www.m444sha.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="m444sha" />
+
+    <meta name="twitter:title" content="m444sha" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="bg/lotus.jpeg" />
+
+
+    <link rel="icon" href="icons/32.png" sizes="32x32" type="image/png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icons/96.png">
+    <link rel="apple-touch-icon" href="icons/180.png" sizes="180x180">
+
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        img {
+            -webkit-user-drag: none;
+            user-select: none;
+        }
+
+        @font-face {
+            font-family: "Champ";
+            src: url("fonts/champ.otf") format("opentype");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            flex-direction: column;
+
+            height: 100dvh;
+
+            overflow: hidden;
+        }
+
+        #bg {
+            width: 100vw;
+            height: 100dvh;
+
+            overflow: hidden;
+
+        }
+
+
+        .bg {
+
+            width: 100vw;
+            background-position: center;
+            height: 50dvh;
+
+
+        }
+
+        #bg2 {
+
+
+
+            background-image: url(bg/fire.jpg);
+            background-position: 100vw 35%;
+
+
+        }
+
+        #bg1 {
+
+
+
+            background-image: url(bg/polka.png);
+
+
+        }
+
+        #stripdiv {
+            position: absolute;
+            height: 100dvh;
+            width: 100vw;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #strip {
+
+
+            width: 100vw;
+        }
+
+        #title {
+            top: 5vw;
+            color: white;
+            position: absolute;
+            font-size: 15vw;
+            font-family: 'Champ';
+
+        }
+
+        #ev {
+
+            padding: 1.5vw;
+            position: absolute;
+            color: white;
+            font-size: 5vw;
+            font-family: 'Champ';
+
+            bottom: 25dvh;
+            right: 25vw;
+            display: none;
+            background-image: url(bg/pink.jpg);
+            background-size: 100% 100%;
+        }
+
+        @keyframes tilt {
+            0% {
+                transform: rotate(-1deg);
+            }
+
+            50% {
+                transform: rotate(1deg);
+            }
+
+            100% {
+                transform: rotate(-1deg);
+            }
+        }
+
+
+        .icon {
+            position: absolute;
+
+            animation: tilt 1s ease-in-out infinite;
+            transition: filter 0.3s ease-in-out;
+
+
+        }
+
+        .icon.show img {
+            animation: popIn 0.3s ease forwards;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0);
+            }
+
+            to {
+
+                transform: scale(1);
+            }
+        }
+
+        .icon:hover {
+            filter: blur(2px);
+
+        }
+
+        .icon:hover img {
+            transform: scale(1.05);
+        }
+
+        .icon img {
+            transition: transform 0.3s ease-in-out;
+            transform: scale(0);
+        }
+
+        #deer {
+            left: 5vw;
+            bottom: 2dvh;
+        }
+
+        #deer img {
+            width: 15vw;
+        }
+
+        #wings {
+            left: 6vw;
+            top: 2dvh;
+        }
+
+        #wings img {
+            width: 20vw;
+        }
+
+        #ballet {
+            bottom: 0;
+        }
+
+        #ballet img {
+            width: 20vw;
+        }
+
+        #key {
+            left: 30vw;
+            bottom: 5dvh;
+        }
+
+        #key img {
+            width: 15vw;
+        }
+
+        #doll {
+            left: 50vw;
+            bottom: 2dvh;
+        }
+
+        #doll img {
+            width: 10vw;
+        }
+
+        @media (max-width: 600px) {
+            #title {
+                font-size: 35vw;
+                top: 15vw;
+            }
+
+            .bg {
+                height: auto;
+            }
+
+            #bg2 {
+                height: 40%;
+                background-position: 80% 30%;
+            }
+
+            #bg1 {
+                height: 60%;
+            }
+
+            #stripdiv {
+
+                height: 80dvh;
+
+            }
+
+
+            #deer {
+                left: 5vw;
+                bottom: 30dvh;
+            }
+
+            #deer img {
+                width: 35vw;
+            }
+
+            #wings {
+                left: auto;
+                right: 0;
+                top: 45dvh;
+            }
+
+            #wings img {
+                width: 40vw;
+            }
+
+            #ballet {
+                bottom: 0;
+                left: 0;
+            }
+
+            #ballet img {
+                width: 50vw;
+            }
+
+            #key {
+
+                left: 10vw;
+                right: auto;
+                bottom: 2dvh;
+            }
+
+            #key img {
+                width: 40vw;
+            }
+
+            #doll {
+                left: auto;
+                right: 10vw;
+                bottom: 2dvh;
+            }
+
+            #doll img {
+                width: 32vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <p id="title">Masha</p>
+
+    <p id="ev">everything has a soul</p>
+
+    <div id="stripdiv">
+        <img draggable="false" id="strip" src="bg/strip.png" alt="">
+    </div>
+    <div id="bg">
+        <div class="bg" id="bg2"></div>
+        <div class="bg" id="bg1"></div>
+
+    </div>
+
+    <div class="icon" id="deer">
+        <a href="poetry.html">
+            <img src="icons/deer.png" alt="">
+        </a>
+    </div>
+    <div class="icon" id="wings">
+        <a href="articles.html">
+            <img src="icons/wings.png" alt="">
+        </a>
+    </div>
+    <!-- <div class="icon" id="ballet">
+        <img src="icons/ballet.png" alt="">
+    </div> -->
+    <div class="icon" id="key">
+        <a href="photo.html">
+            <img src="icons/key.png" alt="">
+        </a>
+    </div>
+    <div class="icon" id="doll">
+        <a href="films.html">
+            <img src="icons/doll.png" alt="">
+        </a>
+    </div>
+</body>
+
+
+<script>
+    window.addEventListener("load", () => {
+        const icons = document.querySelectorAll(".icon");
+
+        icons.forEach((icon, i) => {
+            setTimeout(() => {
+                icon.classList.add("show");
+            }, i * 200); // 150ms delay between each icon
+        });
+    });
+</script>
+
+</html>
