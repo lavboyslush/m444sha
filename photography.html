@@ -68,92 +68,79 @@
     <img id="fold" src="bg/bookfold.png" alt="">
 
 
-
-    <img class="full" src="anika/1.webp" alt="">
-
-    <div class="full">
-        <img src="anika/2.webp" alt="">
-        <img src="anika/3.webp" alt="">
-    </div>
-
-    <img src="anika/4.webp" class="full" alt="">
+    <img class="full" data-src="anika/1.webp" alt="">
 
     <div class="full">
-        <img src="anika/5.webp" alt="">
-        <img src="anika/6.webp" alt="">
+        <img data-src="anika/2.webp" alt="">
+        <img data-src="anika/3.webp" alt="">
     </div>
 
-    <img src="anika/7.webp" class="full" alt="">
-    <img src="anika/8.webp" class="full" alt="">
-
+    <img data-src="anika/4.webp" class="full" alt="">
 
     <div class="full">
-        <img src="anika/9.webp" alt="">
-        <img src="anika/10.webp" alt="">
+        <img data-src="anika/5.webp" alt="">
+        <img data-src="anika/6.webp" alt="">
     </div>
 
-    <img src="anika/11.webp" class="full" alt="">
-    <img src="anika/12.webp" class="full" alt="">
-
-    <img src="anika/13.webp" class="full" alt="">
+    <img data-src="anika/7.webp" class="full" alt="">
+    <img data-src="anika/8.webp" class="full" alt="">
 
     <div class="full">
-        <img src="anika/14.webp" alt="">
-        <img src="anika/15.webp" alt="">
+        <img data-src="anika/9.webp" alt="">
+        <img data-src="anika/10.webp" alt="">
     </div>
 
-    <img src="anika/16.webp" class="full" alt="">
-    <img src="anika/17.webp" class="full" alt="">
+    <img data-src="anika/11.webp" class="full" alt="">
+    <img data-src="anika/12.webp" class="full" alt="">
 
+    <img data-src="anika/13.webp" class="full" alt="">
+
+    <div class="full">
+        <img data-src="anika/14.webp" alt="">
+        <img data-src="anika/15.webp" alt="">
+    </div>
+
+    <img data-src="anika/16.webp" class="full" alt="">
+    <img data-src="anika/17.webp" class="full" alt="">
 
 </body>
 
-<script>
-    // Get ?name= from URL
-    const params = new URLSearchParams(window.location.search);
+<script>const params = new URLSearchParams(window.location.search);
     const folderName = params.get("name");
 
-    if (folderName) {
-        const images = document.querySelectorAll("img");
+    const images = document.querySelectorAll("img[data-src]");
 
-        images.forEach(img => {
-            if (img.src.includes("anika/")) {
-                // 1. Generate the base path by replacing the folder name
-                let basePath = img.src.replace("anika/", folderName + "/");
+    images.forEach(img => {
+        const originalDataSrc = img.getAttribute("data-src");
 
-                // 2. Strip the original extension (e.g., .png, .jpg) to try our own
-                const baseWithoutExt = basePath.substring(0, basePath.lastIndexOf('.'));
+        // Determine the target base path (use folderName if it exists, otherwise fall back to 'anika')
+        let basePath = folderName
+            ? originalDataSrc.replace("anika/", folderName + "/")
+            : originalDataSrc;
 
-                // List formats in order of priority
-                const formats = ['.webp', '.jpg', '.JPG'];
+        // Strip the original extension
+        const baseWithoutExt = basePath.substring(0, basePath.lastIndexOf('.'));
+        const formats = ['.webp', '.jpg', '.JPG'];
 
-                // Helper function to try loading formats sequentially
-                function tryNextFormat(index) {
-                    if (index >= formats.length) return; // All formats failed
+        function tryNextFormat(index) {
+            if (index >= formats.length) return;
 
-                    const testSrc = baseWithoutExt + formats[index];
+            const testSrc = baseWithoutExt + formats[index];
+            const tempImg = new Image();
 
-                    // Create a temporary off-screen image to test if the file exists
-                    const tempImg = new Image();
+            tempImg.onload = function () {
+                img.src = testSrc; // Triggers the actual image download *only* once found
+            };
 
-                    tempImg.onload = function () {
-                        // Success! Apply this working source to the actual page image
-                        img.src = testSrc;
-                    };
+            tempImg.onerror = function () {
+                tryNextFormat(index + 1);
+            };
 
-                    tempImg.onerror = function () {
-                        // Failed! Try the next format in the array
-                        tryNextFormat(index + 1);
-                    };
+            tempImg.src = testSrc;
+        }
 
-                    tempImg.src = testSrc;
-                }
-
-                // Start the fallback chain
-                tryNextFormat(0);
-            }
-        });
-    }
+        tryNextFormat(0);
+    });
 </script>
 
 <script>
